@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aurora Coffee — Awesome Coffee Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#111827;
+      --accent:#d97706; /* warm amber */
+      --muted:#9ca3af;
+      --glass: rgba(255,255,255,0.06);
+      --radius:16px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,#071028 0%, #0b1220 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+
+    /* layout */
+    header{
+      position:fixed;left:0;right:0;top:16px;display:flex;align-items:center;justify-content:space-between;padding:12px 28px;z-index:40;
+      backdrop-filter: blur(6px);
+    }
+
+    .logo{
+      display:flex;gap:12px;align-items:center;font-weight:800;letter-spacing:0.6px;font-size:18px;
+    }
+    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#fb923c);display:grid;place-items:center;color:#111827;font-weight:700;font-family:'Playfair Display',serif}
+
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:8px 12px;border-radius:10px}
+    nav a:hover{color:#fff;background:var(--glass)}
+
+    main{max-width:1100px;margin:120px auto 80px;padding:0 20px}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center}
+    .hero-left .eyebrow{color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:12px}
+    .hero-left h1{font-family:'Playfair Display',serif;font-size:48px;margin:12px 0;color:#fff}
+    .hero-left p{color:var(--muted);max-width:56ch}
+    .cta{margin-top:20px;display:flex;gap:12px}
+    .btn{background:linear-gradient(90deg,var(--accent),#fb923c);border:none;color:#071022;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(217,119,6,0.18)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .hero-right{position:relative}
+    .cup{
+      width:100%;height:100%;border-radius:20px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(2,6,23,0.6);
+      display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;min-height:360px
+    }
+    .latte{width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff9e6 0%, #f4d7b0 20%, #a36a41 70%);box-shadow:inset 0 6px 18px rgba(0,0,0,0.3);display:grid;place-items:center}
+    .steam{position:absolute;top:20px;right:24px;font-size:120px;opacity:0.06;transform:rotate(-12deg)}
+
+    /* menu */
+    .section{margin-top:48px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:18px;box-shadow:0 8px 26px rgba(2,6,23,0.6);}
+    .card h3{margin:0 0 6px 0}
+    .price{font-weight:700;color:var(--accent)}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* specials */
+    .specials{display:flex;gap:18px;margin-top:18px}
+    .special{flex:1;border-radius:14px;padding:18px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;gap:12px}
+    .special img{width:86px;height:86px;border-radius:10px;object-fit:cover}
+
+    /* footer */
+    footer{margin-top:48px;padding:28px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;justify-content:space-between;align-items:center}
+
+    /* responsiveness */
+    @media (max-width:960px){
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      header{padding:10px 16px}
+      .hero-left h1{font-size:36px}
+    }
+    @media (max-width:600px){
+      .grid{grid-template-columns:1fr}
+      nav{display:none}
+      header{left:12px;right:12px}
+    }
+
+    /* small touches */
+    .badge{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-size:13px}
+
+    /* subtle hover lift */
+    .card:hover{transform:translateY(-6px);transition:transform .28s ease;}
+    .special:hover{transform:scale(1.02);transition:transform .28s ease}
+  
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="mark">A</div>
+      <div>
+        <div style="font-size:14px">Aurora Coffee</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">Brewed with warmth</div>
+      </div>
+    </div>
+
+    <nav >
+      <a href="#menu">Menu</a>
+      <a href="#specials">Specials</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="badge" href="#order">Order</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <div class="eyebrow">New — Autumn blends</div>
+        <h1>Find your perfect cup<br><span style="color:var(--accent)">slow-crafted</span> every time</h1>
+        <p>At Aurora Coffee we source single-origin beans and roast them gently for balanced flavours — caramel, praline, and a whisper of spice. Cozy atmosphere — great vibes.</p>
+
+        <div class="cta">
+          <button class="btn">Explore Menu</button>
+          <button class="btn ghost">Reserve a table</button>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted)">
+          <strong style="color:#fff">Open</strong> • Mon–Sun 7:00 — 22:00 • Pickup & Delivery
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="cup" aria-hidden>
+          <div class="latte">
+            <!-- decorative latte art -->
+            <svg width="160" height="160" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="g" x1="0" x2="1">
+                  <stop offset="0" stop-color="#fff9e6"/>
+                  <stop offset="1" stop-color="#f4d7b0"/>
+                </linearGradient>
+              </defs>
+              <circle cx="100" cy="100" r="90" fill="url(#g)" />
+              <g transform="translate(40,36)" fill="#b7764e">
+                <path d="M60 10 C50 40,10 50,10 70 C10 90,70 85,80 70 C90 55,80 25,60 10z" opacity="0.95"/>
+                <path d="M30 16 C44 30,40 44,24 58" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div style="text-align:center;margin-top:6px;color:var(--muted);font-size:13px">House Latte — smooth, sweet, microfoam</div>
+        </div>
+        <div class="steam">☁️</div>
+      </div>
+    </section>
+
+    <section id="menu" class="section">
+      <h2 style="font-family:'Playfair Display',serif;margin:0 0 12px 0">Menu highlights</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Espresso</h3>
+          <div class="muted">Classic, bold shot</div>
+          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div class="price">₹90</div><div class="muted">single origin</div></div>
+        </div>
+
+        <div class="card">
+          <h3>House Latte</h3>
+          <div class="muted">Velvety milk, subtle caramel</div>
+          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div class="price">₹160</div><div class="muted">regular / large</div></div>
+        </div>
+
+        <div class="card">
+          <h3>Cold Brew</h3>
+          <div class="muted">24hr steeped, silky</div>
+          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div class="price">₹140</div><div class="muted">bottle available</div></div>
+        </div>
+
+        <div class="card">
+          <h3>Chai Latte</h3>
+          <div class="muted">Spiced, warming</div>
+          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div class="price">₹120</div><div class="muted">house blend</div></div>
+        </div>
+
+        <div class="card">
+          <h3>Caramel Frappe</h3>
+          <div class="muted">Iced, creamy</div>
+          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div class="price">₹180</div><div class="muted">seasonal</div></div>
+        </div>
+
+        <div class="card">
+          <h3>Affogato</h3>
+          <div class="muted">Shot over vanilla gelato</div>
+          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div class="price">₹200</div><div class="muted">dessert</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="specials" class="section">
+      <h2 style="font-family:'Playfair Display',serif;margin:0 0 12px 0">Specials</h2>
+      <div class="specials">
+        <div class="special">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcd" alt="seasonal"/>
+          <div>
+            <h3 style="margin:0">Pumpkin Spice Latte</h3>
+            <div class="muted" style="margin-top:6px">Limited time • cinnamon, nutmeg, real pumpkin</div>
+            <div style="margin-top:12px;font-weight:700;color:var(--accent)">₹210</div>
+          </div>
+        </div>
+
+        <div class="special">
+          <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=efgh" alt="pastry"/>
+          <div>
+            <h3 style="margin:0">Almond Croissant</h3>
+            <div class="muted" style="margin-top:6px">Buttery, flaky — pairs perfectly with espresso</div>
+            <div style="margin-top:12px;font-weight:700;color:var(--accent)">₹150</div>
+          </div>
+        </div>
+
+        <div class="special">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=ijkl" alt="beans"/>
+          <div>
+            <h3 style="margin:0">House Beans (250g)</h3>
+            <div class="muted" style="margin-top:6px">Roast-to-order • tasting notes: chocolate & orange</div>
+            <div style="margin-top:12px;font-weight:700;color:var(--accent)">₹450</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div>
+        <div style="font-weight:700">Visit us</div>
+        <div class="muted" style="margin-top:6px">12 Willow Street, YourCity • +91 768-200-0235</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-weight:700">Get cozy</div>
+        <div class="muted" style="margin-top:6px">Follow us @AuroraCoffee</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // small script for future enhancements (nav toggle, ordering) — kept minimal
+    // (no external libraries required)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href = a.getAttribute('href');
+        if(href === '#') return;
+        const el = document.querySelector(href);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+      })
+    })
+  </script>
+</body>
+</html>
